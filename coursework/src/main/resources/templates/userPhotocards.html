@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+
+<body>
+<div class="d-flex justify-content-center">
+    <nav class="navbar navbar-expand-lg" style="background-color: #FFFFFF;">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="nav nav-underline">
+                    <li class="nav-item">
+                        <a class="nav-link" style="color: rgba(20, 20, 20, 1); " aria-current="page" href="/" >Главная</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" href="#" role="button" style="color: rgba(20, 20, 20, 1); " data-bs-toggle="dropdown" aria-expanded="false">
+                            Мой профиль
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/userPhotocards">Мои фотографии</a></li>
+                            <li><a class="dropdown-item" href="#">Мои альбомы</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">Выйти</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" style="color: rgba(20, 20, 20, 1); ">Альбомы</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" style="color: rgba(20, 20, 20, 1);">Фотографии</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+
+
+<div class="container ">
+
+    <main>
+
+        <section class="py-5 text-center container">
+            <div class="row py-lg-5">
+                <div class="col-lg-6 col-md-8 mx-auto">
+                    <h1 class="fw-light">Ваши фотографии</h1>
+                    <p>
+                        <a href="/photocard/create" class="btn btn-dark">Добавить новую фотографию</a>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <div class="album py-5 bg-body-tertiary">
+            <div class="container">
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+                    <div class="col" th:each="photocard : ${photocards}">
+                        <div class="card shadow-sm">
+                            <img th:src="@{'/photocard/image/' + ${photocard.id}}" class="card-img-top" style="object-fit: cover; object-position: center; width: 100%; height: 225px;" alt="Placeholder: Thumbnail"
+                                 />
+
+                            <div class="card-body">
+                                <h3 class="mb-0" th:text="${photocard.name}">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</h3>
+                                <p class="card-text" th:text="${photocard.description}">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary">Просмотр</button>
+                                        <button type="button" class="btn btn-sm btn-outline-secondary">Редактировать</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+
+
+</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+    $(document).ready(function() {
+      $('.modal').modal('show');
+    });
+</script>
+
+<script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</html>
